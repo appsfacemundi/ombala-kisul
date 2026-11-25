@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import { Shield, AlertCircle, LogIn, Menu, X, Radio, ArrowLeft, RefreshCw, Smartphone } from 'lucide-react';
+import { Shield, AlertCircle, LogIn, Menu, X, Radio, ArrowLeft, RefreshCw, Smartphone, Mic } from 'lucide-react';
 
 interface HeaderProps {
   currentView: 'website' | 'platform';
   onViewChange: (view: 'website' | 'platform') => void;
   onOpenCitizenModal: () => void;
   onOpenAIModal: () => void;
+  onOpenVoiceModal?: () => void;
   isOffline?: boolean;
   pendingSyncCount?: number;
   onManualSync?: () => void;
@@ -17,6 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onViewChange,
   onOpenCitizenModal,
   onOpenAIModal,
+  onOpenVoiceModal,
   isOffline = false,
   pendingSyncCount = 0,
   onManualSync
@@ -144,6 +146,17 @@ export const Header: React.FC<HeaderProps> = ({
               <Radio className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
               <span>Assistente IA</span>
             </button>
+
+            {onOpenVoiceModal && (
+              <button
+                onClick={onOpenVoiceModal}
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-brand-primary rounded-lg transition-colors shadow-sm"
+                title="Navegação por Voz"
+              >
+                <Mic className="w-3.5 h-3.5 text-brand-400" />
+                <span>Voz</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

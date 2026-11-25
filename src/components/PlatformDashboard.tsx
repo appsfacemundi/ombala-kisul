@@ -13,22 +13,7 @@ import {
   ArrowDownRight, Check, X, Printer, Lock, RefreshCw, Key, Shield
 } from 'lucide-react';
 
-interface PlatformDashboardProps {
-  workers: Worker[];
-  operations: ZoneOperation[];
-  transactions: FinancialTransaction[];
-  complaints: CitizenComplaint[];
-  vehicles: Vehicle[];
-  onValidateOperation: (opId: string) => void;
-  onAddTransaction: (tx: FinancialTransaction) => void;
-  onUpdateComplaintStatus: (id: string, status: CitizenComplaint['status'], team?: string) => void;
-  onOpenAIModal: () => void;
-  isOffline?: boolean;
-  pendingSyncCount?: number;
-  onManualSync?: () => void;
-}
-
-type ModuleKey = 
+export type ModuleKey = 
   | 'painel' 
   | 'operacoes' 
   | 'rh' 
@@ -40,6 +25,23 @@ type ModuleKey =
   | 'relatorios' 
   | 'ia' 
   | 'admin';
+
+interface PlatformDashboardProps {
+  workers: Worker[];
+  operations: ZoneOperation[];
+  transactions: FinancialTransaction[];
+  complaints: CitizenComplaint[];
+  vehicles: Vehicle[];
+  onValidateOperation: (opId: string) => void;
+  onAddTransaction: (tx: FinancialTransaction) => void;
+  onUpdateComplaintStatus: (id: string, status: CitizenComplaint['status'], team?: string) => void;
+  onOpenAIModal: () => void;
+  activeModule?: ModuleKey;
+  onModuleChange?: (mod: ModuleKey) => void;
+  isOffline?: boolean;
+  pendingSyncCount?: number;
+  onManualSync?: () => void;
+}
 
 type UserRole = 'admin_maximo' | 'direcao' | 'rh' | 'financas' | 'supervisor' | 'campo' | 'auditor';
 
@@ -53,11 +55,18 @@ export const PlatformDashboard: React.FC<PlatformDashboardProps> = ({
   onAddTransaction,
   onUpdateComplaintStatus,
   onOpenAIModal,
+  activeModule: controlledModule,
+  onModuleChange,
   isOffline = false,
   pendingSyncCount = 0,
   onManualSync
 }) => {
-  const [activeModule, setActiveModule] = useState<ModuleKey>('painel');
+  const [internalModule, setInternalModule] = useState<ModuleKey>('painel');
+  const activeModule = controlledModule || internalModule;
+  const setActiveModule = (mod: ModuleKey) => {
+    setInternalModule(mod);
+    if (onModuleChange) onModuleChange(mod);
+  };
   const [currentRole, setCurrentRole] = useState<UserRole>('direcao');
   
   // Local states for transactions

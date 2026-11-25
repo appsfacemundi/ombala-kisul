@@ -9,14 +9,18 @@ import {
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { WebsiteView } from '@/components/WebsiteView';
-import { PlatformDashboard } from '@/components/PlatformDashboard';
+import { PlatformDashboard, ModuleKey } from '@/components/PlatformDashboard';
 import { CitizenComplaintModal } from '@/components/CitizenComplaintModal';
 import { AIAssistantModal } from '@/components/AIAssistantModal';
+import { VoiceNavigator } from '@/components/VoiceNavigator';
 
 export default function Home() {
   const [currentView, setCurrentView] = useState<'website' | 'platform'>('website');
+  const [activeModule, setActiveModule] = useState<ModuleKey>('painel');
   const [isCitizenModalOpen, setIsCitizenModalOpen] = useState(false);
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+  const [initialAIQuery, setInitialAIQuery] = useState<string | null>(null);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
 
   // App Data States
   const [workers, setWorkers] = useState<Worker[]>(INITIAL_WORKERS);
@@ -126,6 +130,7 @@ export default function Home() {
         onViewChange={setCurrentView}
         onOpenCitizenModal={() => setIsCitizenModalOpen(true)}
         onOpenAIModal={() => setIsAIModalOpen(true)}
+        onOpenVoiceModal={() => setIsVoiceOpen(true)}
         isOffline={isOffline}
         pendingSyncCount={pendingSyncQueue.length}
         onManualSync={handleManualSync}
@@ -148,6 +153,8 @@ export default function Home() {
           onAddTransaction={handleAddTransaction}
           onUpdateComplaintStatus={handleUpdateComplaintStatus}
           onOpenAIModal={() => setIsAIModalOpen(true)}
+          activeModule={activeModule}
+          onModuleChange={setActiveModule}
           isOffline={isOffline}
           pendingSyncCount={pendingSyncQueue.length}
           onManualSync={handleManualSync}
@@ -170,6 +177,24 @@ export default function Home() {
         operations={operations}
         transactions={transactions}
         onAddTransaction={handleAddTransaction}
+        initialVoiceQuery={initialAIQuery}
+        onClearInitialQuery={() => setInitialAIQuery(null)}
+      />
+
+      {/* Floating AI Voice Navigator */}
+      <VoiceNavigator
+        currentView={currentView}
+        onViewChange={setCurrentView}
+        onModuleChange={setActiveModule}
+        onOpenCitizenModal={() => setIsCitizenModalOpen(true)}
+        onCloseCitizenModal={() => setIsCitizenModalOpen(false)}
+        onOpenAIModal={(q) => {
+          if (q) setInitialAIQuery(q);
+          setIsAIModalOpen(true);
+        }}
+        onCloseAIModal={() => setIsAIModalOpen(false)}
+        isOpen={isVoiceOpen}
+        onToggleOpen={setIsVoiceOpen}
       />
 
       {/* Universal Footer */}

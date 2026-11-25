@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, Bot, Send, Sparkles, AlertCircle, CheckCircle2, 
   HelpCircle, ArrowRight, ShieldAlert, FileText, DollarSign, Users, MapPin 
@@ -14,6 +14,8 @@ interface AIAssistantModalProps {
   operations: ZoneOperation[];
   transactions: FinancialTransaction[];
   onAddTransaction?: (tx: FinancialTransaction) => void;
+  initialVoiceQuery?: string | null;
+  onClearInitialQuery?: () => void;
 }
 
 interface Message {
@@ -34,7 +36,9 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({
   workers,
   operations,
   transactions,
-  onAddTransaction
+  onAddTransaction,
+  initialVoiceQuery,
+  onClearInitialQuery
 }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -46,6 +50,13 @@ export const AIAssistantModal: React.FC<AIAssistantModalProps> = ({
   ]);
   const [inputQuery, setInputQuery] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    if (isOpen && initialVoiceQuery) {
+      handleSendMessage(initialVoiceQuery);
+      if (onClearInitialQuery) onClearInitialQuery();
+    }
+  }, [isOpen, initialVoiceQuery]);
 
   if (!isOpen) return null;
 
