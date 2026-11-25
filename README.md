@@ -77,16 +77,9 @@ npm start
 
 ---
 
-## 6. Publicação no Render («Ligação Prevista»)
+## 6. Publicação 100% Gratuita (Vercel)
 
-Para publicar no **Render** (Web Service):
-1. Conectar o repositório GitHub da OMBALA KISUL ao Render.
-2. Definir:
-   - **Environment:** `Node`
-   - **Build Command:** `export BROWSERSLIST_CONFIG=".browserslistrc" && npm run build`
-   - **Start Command:** `npm start`
-3. Variáveis de ambiente:
-   - `NODE_ENV=production`
-   - `TZ=Africa/Luanda`
-   - `NEXT_PUBLIC_APP_DOMAIN=ombalakisul.co.ao`
-4. Configurar armazenamento de objetos persistente (Render Disks ou bucket S3/R2 compatível) para salvaguarda de fotografias e comprovativos fora do sistema de ficheiros efémero.
+Para publicar sem custos e sem risco de cobrança:
+1. Conectar o repositório GitHub `appsfacemundi/ombala-kisul` na **Vercel** (Plano Hobby gratuito vitalício).
+2. Não exige cartão de crédito.
+3. Servidor de alta velocidade que nunca suspende com link permanente `ombala-kisul.vercel.app`.

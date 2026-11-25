@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
             Domínio Oficial: <strong className="text-white underline decoration-brand-primary">www.ombalakisul.com</strong>
           </span>
           <span className="bg-slate-800 text-slate-300 px-2 py-0.5 rounded text-[10px] border border-slate-700">
-            Ligação ao Render prevista
+            Ambiente de Demonstração
           </span>
           {pendingSyncCount > 0 && (
             <button 
