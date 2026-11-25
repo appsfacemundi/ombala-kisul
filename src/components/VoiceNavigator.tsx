@@ -94,6 +94,21 @@ export const VoiceNavigator: React.FC<VoiceNavigatorProps> = ({
         const textToShow = finalTranscript || interimTranscript;
         setTranscript(textToShow);
 
+        // Deteta a palavra de ativação imediatamente (mesmo antes de terminar a frase)
+        if (wakeWordModeRef.current && !isAwakeRef.current && interimTranscript) {
+          const normInterim = normalizeText(interimTranscript);
+          const activeWake = normalizeText(wakeWordRef.current || 'cajambinha');
+          const aliases = activeWake === 'cajambinha'
+            ? ['cajambinha', 'caixambinha', 'cajamba', 'cajambina', 'jambinha', 'caixa minha', 'casa minha']
+            : [activeWake];
+          if (aliases.some((a) => normInterim.includes(a)) && normInterim.length <= activeWake.length + 12) {
+            setIsAwake(true);
+            const readyMsg = 'Estou pronto, diga o que queres.';
+            setLastAction(readyMsg);
+            speak(readyMsg);
+          }
+        }
+
         if (finalTranscript) {
           handleSpeechSegment(finalTranscript);
         }
@@ -156,7 +171,7 @@ export const VoiceNavigator: React.FC<VoiceNavigatorProps> = ({
     if (wakeWordModeRef.current && !isAwakeRef.current) {
       // Verifica se a palavra de ativação foi dita (inclui variações fonéticas para Cajambinha)
       const aliases = activeWake === 'cajambinha'
-        ? ['cajambinha', 'caixambinha', 'cajamba', 'cajambina']
+        ? ['cajambinha', 'caixambinha', 'cajamba', 'cajambina', 'jambinha', 'caixa minha', 'casa minha']
         : [activeWake];
 
       let matchedAlias = '';
