@@ -397,36 +397,79 @@ export const CitizenComplaintModal: React.FC<CitizenComplaintModalProps> = ({
 
           {/* TAB 3: QR CODE & SMS */}
           {activeTab === 'sms' && (
-            <div className="space-y-4 text-xs">
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-5">
-                <div className="w-32 h-32 bg-white p-2 rounded-xl border border-slate-300 shadow-sm flex-shrink-0 flex items-center justify-center">
-                  {/* Generated QR Code Vector representation */}
-                  <div className="w-full h-full border-2 border-dashed border-slate-400 rounded flex flex-col items-center justify-center p-2 text-center">
-                    <QrCode className="w-12 h-12 text-brand-primary mb-1" />
-                    <span className="text-[9px] font-mono text-slate-500 font-semibold">www.ombalakisul.com/qr</span>
+            <div className="space-y-5 text-xs">
+              {/* Photo Showcase of Real Field Mockups */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 flex flex-col">
+                  <div className="aspect-[4/3] relative overflow-hidden bg-slate-900">
+                    <img 
+                      src="/qr-mockup-contentor.jpg" 
+                      alt="Demonstração do QR Code nos contentores de Ondjiva" 
+                      className="w-full h-full object-cover"
+                    />
+                    <span className="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                      Contentores Urbanos • Ondjiva
+                    </span>
+                  </div>
+                  <div className="p-3 bg-white space-y-1">
+                    <h5 className="font-bold text-slate-900 text-xs">Placas Aparafusadas nos Contentores</h5>
+                    <p className="text-[11px] text-slate-500 leading-snug">
+                      Placas de alta durabilidade com o símbolo ÔK e QR Code direto para reporte de contentor cheio ou entulho.
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-sm mb-1">
-                    Placas de QR Code em Contentores e Mercados
-                  </h4>
-                  <p className="text-slate-600 leading-relaxed">
-                    A OMBALA KISUL instala identificadores com QR Code nos contentores de lixo, praças e mercados de Ondjiva (ex: Mercado da Alemanha e Mercado Oshatotwa).
-                  </p>
-                  <p className="text-slate-500 text-[11px] mt-1.5">
-                    Basta apontar a câmara do telemóvel para abrir diretamente o formulário já com a localização e contentor pré-selecionados.
+
+                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 flex flex-col">
+                  <div className="aspect-[4/3] relative overflow-hidden bg-slate-900">
+                    <img 
+                      src="/qr-mockup-municipe.jpg" 
+                      alt="Munícipe a usar o QR Code num mercado de Ondjiva" 
+                      className="w-full h-full object-cover"
+                    />
+                    <span className="absolute bottom-2 left-2 bg-brand-primary text-white text-[10px] font-bold px-2 py-0.5 rounded">
+                      Mercados e Praças • Cuanhama
+                    </span>
+                  </div>
+                  <div className="p-3 bg-white space-y-1">
+                    <h5 className="font-bold text-slate-900 text-xs">Leitura Instantânea por Smartphone</h5>
+                    <p className="text-[11px] text-slate-500 leading-snug">
+                      O munícipe aponta a câmara no Mercado da Alemanha ou Praça da Paz e abre o formulário sem instalar nenhuma app.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Official Signboard Download / Vector Preview */}
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4">
+                <div className="w-24 h-24 bg-white p-1.5 rounded-xl border border-slate-300 shadow-sm flex-shrink-0 flex items-center justify-center">
+                  <img src="/placa-qr-oficial.svg" alt="Placa Oficial OMBALA KISUL" className="w-full h-full object-contain" />
+                </div>
+                <div className="space-y-1 flex-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-slate-900 text-xs">
+                      Placa Sinalética Oficial Homologada (A4 / Vinil Resistente)
+                    </h4>
+                    <a
+                      href="/placa-qr-oficial.svg"
+                      target="_blank"
+                      download="Placa-QR-Ombala-Kisul.svg"
+                      className="text-[11px] font-bold text-brand-primary hover:underline bg-white px-2.5 py-1 rounded border border-slate-300 shadow-sm"
+                    >
+                      Descarregar Placa (SVG)
+                    </a>
+                  </div>
+                  <p className="text-slate-600 text-[11px] leading-relaxed">
+                    Norma técnica para impressão em vinil laminado anti-UV e anti-lama, preparada para afixação em postes de mercados, contentores metálicos e paragens de táxi de Ondjiva.
                   </p>
                 </div>
               </div>
 
+              {/* Alternative SMS Info */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
                 <div className="flex items-center gap-2 text-slate-900 font-bold">
                   <Smartphone className="w-4 h-4 text-brand-primary" />
                   <h4>Canal SMS para Telemóveis Simples (Sem Internet)</h4>
                 </div>
-                <p className="text-slate-600 leading-relaxed">
-                  Para os munícipes sem smartphone ou sem dados móveis, o sistema integra receção de SMS operacional:
-                </p>
                 <div className="p-3 bg-white rounded-lg border border-slate-300 font-mono text-xs text-slate-800">
                   <span className="text-slate-400 block text-[10px]">Formato do SMS:</span>
                   <strong>ONDJIVA [Bairro] [Descrição do Problema]</strong>

@@ -302,6 +302,82 @@ export const WebsiteView: React.FC<WebsiteViewProps> = ({
       {/* 4. INTERACTIVE BEFORE & AFTER SLIDER COMPONENT */}
       <BeforeAfterSlider />
 
+      {/* 4.1 DEMONSTRAÇÃO PRÁTICA: QR CODE NOS CONTENTORES E MERCADOS */}
+      <section className="py-20 bg-slate-900 text-white border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs font-bold text-brand-400 uppercase tracking-wider bg-brand-primary/20 border border-brand-primary/40 px-3 py-1 rounded-full">
+              Inovação Urbana em Ondjiva
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Sinalética Inteligente nos Contentores e Praças Públicas
+            </h2>
+            <p className="mt-3 text-sm text-slate-300">
+              A OMBALA KISUL instala placas em vinil reforçado e alumínio nos contentores de lixo, paragens e mercados municipais do Cunene, permitindo a qualquer munícipe alertar sobre contentores cheios ou lamas em segundos.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Foto 1: Contentor em Ondjiva */}
+            <div className="lg:col-span-6 space-y-3">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl aspect-[16/11] bg-slate-950 group">
+                <img 
+                  src="/qr-mockup-contentor.jpg" 
+                  alt="Contentor Urbano da OMBALA KISUL com Placa de QR Code em Ondjiva" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
+                  <span className="text-xs font-bold text-brand-400 uppercase tracking-wider">Contentores Urbanos Padronizados</span>
+                  <h4 className="text-lg font-bold text-white">Placa ÔK de Alta Visibilidade</h4>
+                  <p className="text-xs text-slate-300 mt-1">
+                    Fixação com parafusos anti-furto em contentores metálicos ao longo do casco urbano de Ondjiva e Cuanhama.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Foto 2: Munícipe no Mercado */}
+            <div className="lg:col-span-6 space-y-3">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl aspect-[16/11] bg-slate-950 group">
+                <img 
+                  src="/qr-mockup-municipe.jpg" 
+                  alt="Munícipe no Mercado da Alemanha a ler o QR Code da OMBALA KISUL" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
+                  <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Mercado Central & Alemanha</span>
+                  <h4 className="text-lg font-bold text-white">Participação Cidadã em Tempo Real</h4>
+                  <p className="text-xs text-slate-300 mt-1">
+                    Sem necessidade de instalar aplicações: basta apontar a câmara do telemóvel para registar a ocorrência e obter protocolo.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Action Row */}
+          <div className="mt-10 p-5 bg-slate-800/80 rounded-2xl border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <img src="/placa-qr-oficial.svg" alt="Miniatura da Placa" className="w-12 h-12 object-contain bg-white rounded-lg p-1" />
+              <div>
+                <p className="font-bold text-sm text-white">Gostaria de experimentar a leitura agora?</p>
+                <p className="text-xs text-slate-400">Abra o portal de ocorrências interativo ou envie uma simulação de SMS.</p>
+              </div>
+            </div>
+            <button
+              onClick={onOpenCitizenModal}
+              className="px-5 py-2.5 bg-brand-primary hover:bg-brand-hover text-white text-xs font-bold rounded-xl shadow-lg transition-colors whitespace-nowrap"
+            >
+              Testar Portal do Munícipe
+            </button>
+          </div>
+
+        </div>
+      </section>
+
       {/* 5. EQUIPMENT, FLEET & UNIFORMS SHOWCASE */}
       <section id="equipamentos" className="py-20 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
